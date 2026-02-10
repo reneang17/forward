@@ -2,7 +2,7 @@
 
 **Forward** es una aplicación moderna de gestión de tareas y agenda diseñada para maximizar tu productividad diaria. Combina una lista de pendientes tradicional con una agenda estructurada y un tablero de backlog (atemporal) para capturar todas tus ideas.
 
-![Vista Principal](docs/images/focus_view_1770674373990.png)
+![Vista Principal](docs/images/focus_view.png)
 
 ## 🌟 Características Principales
 
@@ -16,7 +16,7 @@ La vista principal te ayuda a gestionar tu día actual con dos secciones claras:
 - Visualiza la carga de trabajo diaria con indicadores de tareas pendientes (puntos) y completadas (cuadros).
 - Navegación fluida entre meses y acceso rápido al detalle de cualquier día.
 
-![Vista Calendario](docs/images/calendar_view_1770674904394.png)
+![Vista Calendario](docs/images/calendar_view.png)
 
 ### 3. Gestión Atemporal (Backlog & Ideas) ♾️
 Un espacio dedicado para todo lo que no tiene fecha específica:
@@ -24,7 +24,7 @@ Un espacio dedicado para todo lo que no tiene fecha específica:
 - **Flujo de Trabajo Flexible**: Mueve tareas desde el backlog a tu agenda diaria cuando estés listo para ejecutarlas.
 - **Archivo**: Mantén tu tablero limpio archivando columnas o tareas completadas sin perder el historial.
 
-![Vista Atemporal](docs/images/timeless_view_1770674910629.png)
+![Vista Atemporal](docs/images/timeless_view.png)
 
 ### 4. Creación Potente de Tareas ✨
 Un modal intuitivo para capturar tareas con todo detalle:
@@ -32,7 +32,7 @@ Un modal intuitivo para capturar tareas con todo detalle:
 - **Categorización**: Asigna colores y categorías para organización visual.
 - **Fechas y Horas**: Programa tareas para un día específico o déjalas en el backlog.
 
-![Crear Tarea](docs/images/task_creation_modal_1770674916609.png)
+![Crear Tarea](docs/images/task_creation_modal.png)
 
 ## 🛠️ Tecnologías
 
