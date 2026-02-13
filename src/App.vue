@@ -26,6 +26,7 @@ const deleteModal = reactive({
     type: null
 });
 
+
 const selectedDay = ref(null);
 const editingId = ref(null);
 
@@ -48,6 +49,7 @@ const isTimeDisabled = ref(false);
 const newBlock = ref({ title: '', description: '', type: 'task', date: '', time: '', listItems: [] });
 const newColumn = ref({ title: '', typeFilter: '', color: '#6366f1' });
 
+
 const todayIso = computed(() => getLocalToday());
 
 const selectedCategoryColor = computed(() => {
@@ -57,9 +59,10 @@ const selectedCategoryColor = computed(() => {
 });
 
 const viewTitle = computed(() => {
-    const titles = { focus: 'Mi Día', calendar: 'Planificación', timeless: 'Backlog & Ideas' };
+    const titles = { focus: 'My Day', calendar: 'Planning', timeless: 'Backlog & Ideas' };
     return titles[currentView.value];
 });
+
 
 // Display Columns in Timeless (Active + Archived if toggle ON)
 const displayColumns = computed(() => {
@@ -73,7 +76,8 @@ const displayColumns = computed(() => {
 const today = new Date();
 const currentMonth = ref(today.getMonth());
 const currentYear = ref(today.getFullYear());
-const currentMonthName = computed(() => new Date(currentYear.value, currentMonth.value).toLocaleString('es-ES', { month: 'long' }));
+const currentMonthName = computed(() => new Date(currentYear.value, currentMonth.value).toLocaleString('en-US', { month: 'long' }));
+
 
 // HELPER: Get block color for calendar grid
 const getBlockColor = (block) => {
@@ -358,7 +362,8 @@ const formatDateFriendly = (d) => {
     const [y,m,day] = d.split('-').map(Number);
     const dateObj = new Date(y, m-1, day);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return dateObj.toLocaleDateString('es-ES', options);
+    return dateObj.toLocaleDateString('en-US', options);
+
 };
 
 const saveNewColumn = () => {
@@ -424,8 +429,8 @@ onMounted(() => {
             
             <nav class="mt-6 flex flex-col gap-2 px-2">
                 <nav-item label="Focus" icon="target" :active="currentView === 'focus'" @click="currentView = 'focus'"></nav-item>
-                <nav-item label="Calendario" icon="calendar" :active="currentView === 'calendar'" @click="currentView = 'calendar'"></nav-item>
-                <nav-item label="Atemporal" icon="infinity" :active="currentView === 'timeless'" @click="currentView = 'timeless'"></nav-item>
+                <nav-item label="Calendar" icon="calendar" :active="currentView === 'calendar'" @click="currentView = 'calendar'"></nav-item>
+                <nav-item label="Timeless" icon="infinity" :active="currentView === 'timeless'" @click="currentView = 'timeless'"></nav-item>
             </nav>
         </div>
         
@@ -433,7 +438,7 @@ onMounted(() => {
             <div class="hidden lg:flex items-center gap-3">
                 <div class="w-8 h-8 rounded-full bg-slate-700"></div>
                 <div class="text-sm">
-                    <p class="font-medium">Usuario</p>
+                    <p class="font-medium">User</p>
                     <p class="text-xs text-slate-500">Pro Plan</p>
                 </div>
             </div>
@@ -455,7 +460,7 @@ onMounted(() => {
             <div class="flex gap-3 items-center">
                 <!-- SHOW ARCHIVED TOGGLE (Only in Timeless) -->
                 <div v-if="currentView === 'timeless'" class="flex items-center gap-2 mr-2">
-                    <span class="text-xs font-medium text-slate-400">Mostrar Archivados</span>
+                    <span class="text-xs font-medium text-slate-400">Show Archived</span>
                     <button 
                         @click="showArchivedItems = !showArchivedItems" 
                         class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none"
@@ -502,7 +507,7 @@ onMounted(() => {
                     </div>
                     <!-- Week Days -->
                     <div class="grid grid-cols-7 border-b border-slate-700 bg-slate-900/50">
-                        <div v-for="day in ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']" :key="day" class="py-2 text-center text-xs font-medium text-slate-500 uppercase">
+                        <div v-for="day in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']" :key="day" class="py-2 text-center text-xs font-medium text-slate-500 uppercase">
                             {{ day }}
                         </div>
                     </div>
@@ -526,7 +531,7 @@ onMounted(() => {
                                     :key="'d'+block.id"
                                     class="w-1.5 h-1.5 rounded-full"
                                     :style="{ backgroundColor: getBlockColor(block) }"
-                                    :title="block.title + ' (Pendiente)'"
+                                    :title="block.title + ' (Pending)'"
                                 ></div>
                                 
                                 <!-- Completed Tasks (SQUARES) -->
@@ -538,7 +543,7 @@ onMounted(() => {
                                         backgroundColor: getBlockColor(block),
                                         opacity: getBlockOpacity(block)
                                     }"
-                                    :title="block.title + ' (Completada)' + (block.type === 'list' ? ' ' + getListProgress(block) : '')"
+                                    :title="block.title + ' (Completed)' + (block.type === 'list' ? ' ' + getListProgress(block) : '')"
                                 ></div>
                             </div>
                         </div>
@@ -550,7 +555,7 @@ onMounted(() => {
                     <!-- Drill-down Header -->
                     <div class="flex items-center gap-4 mb-2 pb-2 border-b border-slate-700">
                         <button @click="selectedDay = null" class="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors bg-slate-800 px-3 py-1.5 rounded-lg">
-                            <icon-lucide name="chevron-left" size="16"></icon-lucide> Volver al Mes
+                            <icon-lucide name="chevron-left" size="16"></icon-lucide> Back to Month
                         </button>
                         <div>
                             <h2 class="text-xl font-semibold text-white">{{ formatDateFriendly(selectedDay) }}</h2>
@@ -583,15 +588,15 @@ onMounted(() => {
                         <div class="p-4 border-b border-slate-800 flex justify-between items-center">
                             <h3 class="font-medium truncate pr-2 flex items-center gap-2">
                                 {{ col.title }}
-                                <span v-if="col.isArchived" class="text-[10px] text-amber-500 bg-amber-900/30 px-1.5 rounded border border-amber-900/50">Archivado</span>
+                                <span v-if="col.isArchived" class="text-[10px] text-amber-500 bg-amber-900/30 px-1.5 rounded border border-amber-900/50">Archived</span>
                             </h3>
                             <div class="flex items-center gap-1">
                                 <!-- Archive/Unarchive Column -->
-                                <button @click="store.toggleArchiveColumn(col.id)" :title="col.isArchived ? 'Desarchivar' : 'Archivar'" class="p-1.5 text-slate-500 hover:text-amber-400 hover:bg-slate-800 rounded transition-colors">
+                                <button @click="store.toggleArchiveColumn(col.id)" :title="col.isArchived ? 'Unarchive' : 'Archive'" class="p-1.5 text-slate-500 hover:text-amber-400 hover:bg-slate-800 rounded transition-colors">
                                     <icon-lucide name="archive" size="14"></icon-lucide>
                                 </button>
                                 <!-- Permanent Delete Column -->
-                                <button @click="initDelete({ id: col.id, type: 'column', title: col.title })" title="Eliminar para siempre" class="p-1.5 text-slate-500 hover:text-red-400 hover:bg-slate-800 rounded transition-colors">
+                                <button @click="initDelete({ id: col.id, type: 'column', title: col.title })" title="Delete forever" class="p-1.5 text-slate-500 hover:text-red-400 hover:bg-slate-800 rounded transition-colors">
                                     <icon-lucide name="trash" size="14"></icon-lucide>
                                 </button>
                             </div>
@@ -610,13 +615,13 @@ onMounted(() => {
                                 
                                 <!-- Add Button -->
                                 <button @click="openPlan('column', { column: col })" class="w-full py-2 text-sm text-slate-500 border border-dashed border-slate-700 rounded-lg hover:text-slate-300 transition-colors" :style="{ borderColor: col.color, color: col.color }">
-                                    + Agregar
+                                    + Add
                                 </button>
                             </div>
 
                             <!-- Completed Section for Backlog -->
                             <div v-if="store.getCompletedBacklogByType(col.typeFilter).length > 0" class="mt-6 pt-4 border-t border-slate-700/50">
-                                <h3 class="text-xs text-slate-500 font-medium mb-3 uppercase tracking-wider">Completadas</h3>
+                                <h3 class="text-xs text-slate-500 font-medium mb-3 uppercase tracking-wider">Completed</h3>
                                 <div class="space-y-3 opacity-60">
                                     <block-item v-for="block in store.getCompletedBacklogByType(col.typeFilter)" :key="block.id" :block="block" :is-backlog="true" @request-delete="initDelete"></block-item>
                                 </div>
@@ -625,7 +630,7 @@ onMounted(() => {
                             <!-- Archived Section for Backlog (Controlled by Toggle) -->
                             <div v-if="showArchivedItems && store.getArchivedBacklogByType(col.typeFilter).length > 0" class="mt-4 pt-4 border-t border-slate-700/50">
                                 <h3 class="text-xs text-slate-600 font-medium mb-3 uppercase tracking-wider flex items-center gap-1">
-                                    <icon-lucide name="archive" size="12"></icon-lucide> Archivadas
+                                    <icon-lucide name="archive" size="12"></icon-lucide> Archived
                                 </h3>
                                 <div class="space-y-3 opacity-40 hover:opacity-80 transition-opacity">
                                     <block-item v-for="block in store.getArchivedBacklogByType(col.typeFilter)" :key="block.id" :block="block" :is-backlog="true" @request-delete="initDelete"></block-item>
@@ -639,7 +644,7 @@ onMounted(() => {
                         <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-lg">
                             <icon-lucide name="plus" size="24" class="text-slate-500 group-hover:text-white transition-colors"></icon-lucide>
                         </div>
-                        <span class="text-slate-500 font-medium group-hover:text-white transition-colors">Añadir Nueva Columna</span>
+                        <span class="text-slate-500 font-medium group-hover:text-white transition-colors">Add New Column</span>
                     </button>
 
                 </div>
@@ -654,13 +659,13 @@ onMounted(() => {
             <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <icon-lucide name="trash" size="24" class="text-red-500"></icon-lucide>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">¿Estás seguro?</h3>
+            <h3 class="text-lg font-bold text-white mb-2">Are you sure?</h3>
             <p class="text-slate-400 text-sm mb-6">
-                Se eliminará <strong class="text-slate-200">"{{ deleteModal.title }}"</strong> para siempre. Esta acción no se puede deshacer.
+                It will delete <strong class="text-slate-200">"{{ deleteModal.title }}"</strong> forever. This action cannot be undone.
             </p>
             <div class="flex gap-3 justify-center">
-                <button @click="deleteModal.show = false" class="px-4 py-2 text-sm text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">Cancelar</button>
-                <button @click="executeDelete" class="px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-500 rounded-lg shadow-lg shadow-red-900/20 transition-colors">Eliminar</button>
+                <button @click="deleteModal.show = false" class="px-4 py-2 text-sm text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">Cancel</button>
+                <button @click="executeDelete" class="px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-500 rounded-lg shadow-lg shadow-red-900/20 transition-colors">Delete</button>
             </div>
         </div>
     </div>
@@ -675,31 +680,31 @@ onMounted(() => {
             <div class="p-6 space-y-5 overflow-y-auto">
                 <!-- Title -->
                 <div>
-                    <input v-model="newBlock.title" type="text" placeholder="Título" class="w-full bg-transparent border-0 border-b border-slate-700 px-0 py-2 text-lg text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" autofocus>
+                    <input v-model="newBlock.title" type="text" placeholder="Title" class="w-full bg-transparent border-0 border-b border-slate-700 px-0 py-2 text-lg text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" autofocus>
                 </div>
 
                  <!-- Description -->
                  <div>
-                    <textarea v-model="newBlock.description" rows="2" placeholder="Descripción (opcional)..." class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-indigo-500 resize-none"></textarea>
+                    <textarea v-model="newBlock.description" rows="2" placeholder="Description (optional)..." class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-indigo-500 resize-none"></textarea>
                 </div>
 
                 <!-- Checklist Section -->
                 <div class="space-y-2">
-                    <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide">Lista de Items</label>
+                    <label class="block text-xs font-medium text-slate-400 uppercase tracking-wide">List Items</label>
                     <div v-for="(item, index) in newBlock.listItems" :key="index" class="flex gap-2">
                         <div class="mt-2 w-4 h-4 rounded-sm border border-slate-600 flex-shrink-0"></div>
-                        <input v-model="item.text" type="text" class="flex-1 bg-transparent border-0 border-b border-slate-700/50 py-1 text-sm focus:outline-none focus:border-indigo-500" placeholder="Elemento de lista">
+                        <input v-model="item.text" type="text" class="flex-1 bg-transparent border-0 border-b border-slate-700/50 py-1 text-sm focus:outline-none focus:border-indigo-500" placeholder="List item">
                         <button @click="removeListItem(index)" class="text-slate-500 hover:text-red-400"><icon-lucide name="x" size="14"></icon-lucide></button>
                     </div>
                     <button @click="addListItem" class="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-medium mt-1">
-                        <icon-lucide name="plus" size="12"></icon-lucide> Agregar item a lista
+                        <icon-lucide name="plus" size="12"></icon-lucide> Add list item
                     </button>
                 </div>
 
                 <!-- CATEGORY TOGGLE -->
                 <div class="pt-2 border-t border-slate-800/50">
                     <div class="flex items-center justify-between mb-3" :class="{'opacity-50': isCategoryLocked}">
-                        <span class="text-sm font-medium text-slate-300">¿Agregar categoría?</span>
+                        <span class="text-sm font-medium text-slate-300">Add Category?</span>
                         <button 
                             @click="hasCategory = !hasCategory" 
                             :disabled="isCategoryLocked"
@@ -712,17 +717,17 @@ onMounted(() => {
                     
                     <div v-if="hasCategory" class="space-y-3 animate-fade-in mb-4 bg-slate-800/30 p-3 rounded-lg">
                         <div>
-                            <label class="block text-[10px] text-slate-400 mb-1 uppercase">Categoría</label>
+                            <label class="block text-[10px] text-slate-400 mb-1 uppercase">Category</label>
                             <select v-model="selectedCategoryId" class="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-sm text-white focus:outline-none focus:border-indigo-500">
                                 <option v-for="col in store.columns" :key="col.id" :value="col.id">{{ col.title }}</option>
-                                <option value="NEW">+ Crear nueva...</option>
+                                <option value="NEW">+ Create new...</option>
                             </select>
                         </div>
 
                         <div v-if="selectedCategoryId === 'NEW'" class="animate-fade-in space-y-3 pt-1">
                             <div>
-                                <label class="block text-[10px] text-slate-400 mb-1 uppercase">Nombre de Categoría</label>
-                                <input v-model="customCategoryTitle" type="text" placeholder="Ej: Universidad" class="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                                <label class="block text-[10px] text-slate-400 mb-1 uppercase">Category Name</label>
+                                <input v-model="customCategoryTitle" type="text" placeholder="Ex: University" class="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-sm text-white focus:outline-none focus:border-indigo-500">
                             </div>
                             <div>
                                 <label class="block text-[10px] text-slate-400 mb-1 uppercase">Color</label>
@@ -730,7 +735,7 @@ onMounted(() => {
                             </div>
                         </div>
                         <div v-else-if="selectedCategoryId" class="animate-fade-in pt-1">
-                            <label class="block text-[10px] text-slate-400 mb-1 uppercase">Color (Asignado)</label>
+                            <label class="block text-[10px] text-slate-400 mb-1 uppercase">Color (Assigned)</label>
                             <div class="flex items-center gap-2">
                                 <div class="w-6 h-6 rounded border border-slate-600" :style="{ backgroundColor: selectedCategoryColor }"></div>
                                 <span class="text-xs text-slate-500">{{ selectedCategoryColor }}</span>
@@ -743,7 +748,7 @@ onMounted(() => {
                 <div class="pt-2 border-t border-slate-800/50">
                     <!-- Date Toggle -->
                     <div class="flex items-center justify-between mb-3" :class="{'opacity-50': isDateDisabled}">
-                        <span class="text-sm font-medium text-slate-300">¿Asignar Fecha?</span>
+                        <span class="text-sm font-medium text-slate-300">Assign Date?</span>
                         <button 
                             @click="toggleTimeless" 
                             :disabled="isDateDisabled"
@@ -758,14 +763,14 @@ onMounted(() => {
                     <div v-if="!isTimeless" class="space-y-4 animate-fade-in bg-slate-800/30 p-3 rounded-lg">
                         <div class="flex gap-3">
                             <div class="flex-1">
-                                <label class="block text-[10px] text-slate-400 mb-1 uppercase">Fecha</label>
+                                <label class="block text-[10px] text-slate-400 mb-1 uppercase">Date</label>
                                 <input v-model="newBlock.date" type="date" :disabled="isDateLocked" class="w-full bg-slate-800 border border-slate-700 rounded px-2 py-1.5 text-sm text-white focus:outline-none focus:border-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
                             </div>
                         </div>
                         
                         <!-- TOGGLE TIME -->
                         <div class="flex items-center justify-between" :class="{'opacity-50': isTimeDisabled}">
-                            <span class="text-xs font-medium text-slate-400">¿Hora Específica?</span>
+                            <span class="text-xs font-medium text-slate-400">Specific Time?</span>
                             <div class="flex items-center gap-3">
                                 <button 
                                     @click="hasTime = !hasTime" 
@@ -786,13 +791,13 @@ onMounted(() => {
                     <!-- Backlog Message -->
                     <div v-else class="p-3 bg-slate-800/50 rounded-lg border border-slate-700/50 text-xs text-slate-400 flex items-center justify-center gap-2 animate-fade-in">
                         <icon-lucide name="infinity" size="14"></icon-lucide>
-                        <span>Se guardará en <strong>Atemporal</strong></span>
+                        <span>Will be saved in <strong>Timeless</strong></span>
                     </div>
                 </div>
             </div>
             <div class="p-4 bg-slate-800/50 flex justify-end gap-2 border-t border-slate-800">
-                <button @click="showModal = false" class="px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors">Cancelar</button>
-                <button @click="saveNewBlock" class="px-6 py-2 text-sm bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-medium shadow-lg shadow-indigo-500/20 transition-all transform active:scale-95">Guardar</button>
+                <button @click="showModal = false" class="px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors">Cancel</button>
+                <button @click="saveNewBlock" class="px-6 py-2 text-sm bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-medium shadow-lg shadow-indigo-500/20 transition-all transform active:scale-95">Save</button>
             </div>
         </div>
     </div>

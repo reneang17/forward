@@ -1,82 +1,82 @@
 # Forward 🚀
 
-**Forward** es una aplicación moderna de gestión de tareas y agenda diseñada para maximizar tu productividad diaria. Combina una lista de pendientes tradicional con una agenda estructurada y un tablero de backlog (atemporal) para capturar todas tus ideas.
+**Forward** is a modern task management and agenda application designed to maximize your daily productivity. It combines a traditional to-do list with a structured agenda and a backlog board (timeless) to capture all your ideas.
 
-![Vista Principal](docs/images/focus_view.png)
+![Focus View](docs/images/focus_view.png)
 
-## 🌟 Características Principales
+## 🌟 Key Features
 
-### 1. Enfoque Diario (Mi Día) 🎯
-La vista principal te ayuda a gestionar tu día actual con dos secciones claras:
-- **Agenda (Con Hora)**: Visualiza tus compromisos y tareas con horario específico en una línea de tiempo vertical.
-- **Tareas del Día (To-Do)**: Una lista flexible para tareas que deben hacerse hoy pero sin horario fijo.
+### 1. Daily Focus (My Day) 🎯
+The main view helps you manage your current day with two clear sections:
+- **Agenda (With Time)**: Visualize your commitments and tasks with specific schedules on a vertical timeline.
+- **Tasks of the Day (To-Do)**: A flexible list for tasks that must be done today but without a fixed schedule.
 
-### 2. Planificación Mensual (Calendario) 📅
-- Una vista de calendario completa para organizar tu mes.
-- Visualiza la carga de trabajo diaria con indicadores de tareas pendientes (puntos) y completadas (cuadros).
-- Navegación fluida entre meses y acceso rápido al detalle de cualquier día.
+### 2. Monthly Planning (Calendar) 📅
+- A complete calendar view to organize your month.
+- Visualize daily workload with indicators for pending tasks (dots) and completed tasks (squares).
+- Fluid navigation between months and quick access to the detail of any day.
 
-![Vista Calendario](docs/images/calendar_view.png)
+![Calendar View](docs/images/calendar_view.png)
 
-### 3. Gestión Atemporal (Backlog & Ideas) ♾️
-Un espacio dedicado para todo lo que no tiene fecha específica:
-- **Columnas Personalizables**: Crea categorías como "Ideas", "Trabajo", "Proyectos Personales", etc.
-- **Flujo de Trabajo Flexible**: Mueve tareas desde el backlog a tu agenda diaria cuando estés listo para ejecutarlas.
-- **Archivo**: Mantén tu tablero limpio archivando columnas o tareas completadas sin perder el historial.
+### 3. Timeless Management (Backlog & Ideas) ♾️
+A dedicated space for everything without a specific date:
+- **Customizable Columns**: Create categories like "Ideas", "Work", "Personal Projects", etc.
+- **Flexible Workflow**: Move tasks from the backlog to your daily agenda when you are ready to execute them.
+- **Archive**: Keep your board clean by archiving completed columns or tasks without losing history.
 
-![Vista Atemporal](docs/images/timeless_view.png)
+![Timeless View](docs/images/timeless_view.png)
 
-### 4. Creación Potente de Tareas ✨
-Un modal intuitivo para capturar tareas con todo detalle:
-- **Checklists**: Divide tareas grandes en sub-items manejables.
-- **Categorización**: Asigna colores y categorías para organización visual.
-- **Fechas y Horas**: Programa tareas para un día específico o déjalas en el backlog.
+### 4. Powerful Task Creation ✨
+An intuitive modal to capture tasks in full detail:
+- **Checklists**: Divide large tasks into manageable sub-items.
+- **Categorization**: Assign colors and categories for visual organization.
+- **Dates and Times**: Schedule tasks for a specific day or leave them in the backlog.
 
-![Crear Tarea](docs/images/task_creation_modal.png)
+![Create Task](docs/images/task_creation_modal.png)
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
-Este proyecto está construido con un stack moderno y eficiente:
+This project is built with a modern and efficient stack:
 
 - **Frontend**: [Vue.js 3](https://vuejs.org/) (Composition API)
-- **Build Tool**: [Vite](https://vitejs.dev/) - Para un desarrollo ultrarrápido.
-- **Estilos**: [Tailwind CSS](https://tailwindcss.com/) - Diseño responsivo y personalizable.
-- **Estado**: [Pinia](https://pinia.vuejs.org/) - Gestión de estado reactiva.
-- **Backend / Persistencia**: [Firebase](https://firebase.google.com/) (Firestore) - Almacenamiento de datos en tiempo real.
+- **Build Tool**: [Vite](https://vitejs.dev/) - For ultra-fast development.
+- **Styles**: [Tailwind CSS](https://tailwindcss.com/) - Key responsive and customizable design.
+- **State**: [Pinia](https://pinia.vuejs.org/) - Reactive state management.
+- **Backend / Persistence**: [Firebase](https://firebase.google.com/) (Firestore) - Real-time data storage.
 
-## 🚀 Instalación y Ejecución
+## 🚀 Installation and Execution
 
-Sigue estos pasos para correr el proyecto localmente:
+Follow these steps to run the project locally:
 
-1.  **Clonar el repositorio:**
+1.  **Clone the repository:**
     ```bash
-    git clone <tu-repositorio>
+    git clone <your-repository>
     cd forward
     ```
 
-2.  **Instalar dependencias:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Configurar Variables de Entorno:**
-    Asegúrate de tener configurado tu proyecto de Firebase. Crea un archivo `.env` en la raíz si es necesario (consulta `.env.example`).
+3.  **Configure Environment Variables:**
+    Ensure you have your Firebase project configured. Create a `.env` file in the root if necessary (consult `.env.example`).
 
-4.  **Iniciar servidor de desarrollo:**
+4.  **Start development server:**
     ```bash
     npm run dev
     ```
-    La aplicación estará disponible en `http://localhost:5173` (o el puerto que indique la consola).
+    The application will be available at `http://localhost:5173` (or the port indicated in the console).
 
-## 🚧 Estado del Proyecto
+## 🚧 Project Status
 
-Actualmente, el **Frontend** está completo con todas las funcionalidades lógicas y de interfaz de usuario.
-- ✅ Gestión completa de tareas (CRUD).
-- ✅ Vistas de Día, Calendario y Backlog.
-- ✅ Persistencia de datos con Firebase.
+Currently, the **Frontend** is complete with all logical and user interface functionalities.
+- ✅ Complete task management (CRUD).
+- ✅ Day, Calendar, and Backlog views.
+- ✅ Data persistence with Firebase.
 
-**Pendiente:**
-- 🔄 Backend dedicado para sistema de notificaciones push (Móvil/Escritorio).
+**Pending:**
+- 🔄 Dedicated backend for push notification system (Mobile/Desktop).
 
 ---
-*Hecho con ❤️ para organizar tu vida.*
+*Made with ❤️ to organize your life.*
