@@ -6,9 +6,9 @@ defineProps(['label', 'icon', 'active'])
 <template>
     <button 
         class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group"
-        :class="active ? 'bg-indigo-600 text-white shadow-md shadow-indigo-900/20' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100'"
+        :class="active ? 'bg-fw-accent text-fw-bg-deep shadow-md shadow-fw-accent/20 font-semibold' : 'text-fw-text-muted hover:bg-fw-surface hover:text-fw-text'"
     >
-        <icon-lucide :name="icon" :class="active ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'"></icon-lucide>
+        <icon-lucide :name="icon" :class="active ? 'text-fw-bg-deep' : 'text-fw-text-muted group-hover:text-fw-text'"></icon-lucide>
         <span class="font-medium text-sm hidden lg:block">{{ label }}</span>
     </button>
 </template>

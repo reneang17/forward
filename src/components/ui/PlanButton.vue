@@ -8,10 +8,10 @@ defineEmits(['click'])
     <button 
         class="flex items-center gap-2 rounded-lg text-sm font-medium transition-colors"
         :class="[
-            variant === 'primary' ? 'bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 shadow-lg shadow-indigo-500/20' : '',
-            variant === 'minimal' ? 'text-xs bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600 hover:text-white px-2 py-1 border border-indigo-600/30' : '',
-            variant === 'minimal-slate' ? 'text-xs bg-slate-700/50 text-slate-300 hover:bg-slate-700 hover:text-white px-2 py-1 border border-slate-600/50' : '',
-            variant === 'dashed' ? 'w-full py-2 text-slate-500 border border-dashed border-slate-700 hover:text-slate-300' : ''
+            variant === 'primary' ? 'bg-fw-accent hover:bg-fw-accent-bright text-fw-bg-deep px-4 py-2 shadow-lg shadow-fw-accent/20' : '',
+            variant === 'minimal' ? 'text-xs bg-fw-accent/20 text-fw-accent hover:bg-fw-accent hover:text-fw-bg-deep px-2 py-1 border border-fw-accent/30' : '',
+            variant === 'minimal-slate' ? 'text-xs bg-fw-surface/50 text-fw-text-muted hover:bg-fw-surface hover:text-fw-text px-2 py-1 border border-fw-border/50' : '',
+            variant === 'dashed' ? 'w-full py-2 text-fw-text-faint border border-dashed border-fw-border hover:text-fw-text-muted' : ''
         ]"
         @click="$emit('click')"
     >

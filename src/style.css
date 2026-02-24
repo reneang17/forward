@@ -6,17 +6,17 @@
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #64748b; }
+::-webkit-scrollbar-thumb { background: #24383F; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #5A7A8A; }
 
 /* Glass Panel Effect */
 .glass-panel { 
-    background: rgba(30, 41, 59, 0.7); 
+    background: rgba(24, 42, 48, 0.7); 
     backdrop-filter: blur(10px); 
-    border: 1px solid rgba(255,255,255,0.05); 
+    border: 1px solid rgba(242, 238, 174, 0.08); 
 }
 
 /* Custom Scrollbar Class */
 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #24383F; border-radius: 2px; }

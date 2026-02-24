@@ -11,6 +11,25 @@ export default {
         slate: {
             850: '#1e293b',
             900: '#0f172a',
+        },
+        fw: {
+          // Backgrounds — monsoon cloud tones (dark petrol blue-greens)
+          'bg-deep':   '#111D22',  // deepest — midnight storm
+          'bg':        '#182A30',  // primary — deep monsoon
+          'bg-alt':    '#24383F',  // sidebar — stormy petrol
+          'surface':   '#1E3038',  // card surfaces — dark teal cloud
+          'surface-hover': '#2A3E47', // card hover — lifting storm
+          // Borders
+          'border':    '#3A5260',  // subtle borders — rain-washed
+          'border-strong': '#5A7A8A', // prominent — cloud break
+          // Text
+          'text':      '#F2EEAE',  // main text
+          'text-muted':'#AEB5BF',  // secondary text
+          'text-faint':'#5A7282',  // faint — mist
+          // Accents (yellows)
+          'accent':    '#F2D750',  // primary accent (buttons, active)
+          'accent-bright': '#F2E205', // vivid accent
+          'accent-soft': '#F2EEAE', // soft accent (matching text)
         }
       },
       keyframes: {
