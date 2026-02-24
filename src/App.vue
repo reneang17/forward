@@ -7,6 +7,7 @@ import BlockItem from './components/BlockItem.vue';
 import IconLucide from './components/ui/IconLucide.vue';
 import DayDashboard from './components/DayDashboard.vue';
 import PlanButton from './components/ui/PlanButton.vue';
+import logoUrl from './assets/logo.png';
 
 const store = useTaskStore();
 const currentView = ref('focus');
@@ -419,16 +420,14 @@ onMounted(() => {
     <aside class="w-20 lg:w-64 border-r border-fw-border flex flex-col justify-between bg-fw-bg-alt/50 transition-all duration-300 hidden md:flex">
         <div>
             <div class="h-16 flex items-center justify-center lg:justify-start lg:px-6 border-b border-fw-border">
-                <div class="w-8 h-8 bg-fw-accent rounded-lg flex items-center justify-center mr-0 lg:mr-3 shadow-lg shadow-fw-accent/20">
-                     <icon-lucide name="target" size="20" class="text-white hidden lg:block" style="display:none"></icon-lucide> <!-- Placeholder logic if needed -->
-                     <!-- SVG Logo matching original -->
-                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-0 lg:mr-3 overflow-hidden">
+                     <img :src="logoUrl" alt="Forward Logo" class="w-full h-full object-cover" />
                 </div>
-                <span class="font-bold text-lg tracking-tight hidden lg:block">Forward</span>
+                <span class="tracking-tight hidden lg:block text-fw-accent" style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 28px;">Forward</span>
             </div>
             
             <nav class="mt-6 flex flex-col gap-2 px-2">
-                <nav-item label="Focus" icon="target" :active="currentView === 'focus'" @click="currentView = 'focus'"></nav-item>
+                <nav-item label="Today" icon="target" :active="currentView === 'focus'" @click="currentView = 'focus'"></nav-item>
                 <nav-item label="Calendar" icon="calendar" :active="currentView === 'calendar'" @click="currentView = 'calendar'"></nav-item>
                 <nav-item label="Timeless" icon="infinity" :active="currentView === 'timeless'" @click="currentView = 'timeless'"></nav-item>
             </nav>
@@ -456,7 +455,7 @@ onMounted(() => {
     <main class="flex-1 flex flex-col h-full overflow-hidden relative">
         <!-- Top Bar -->
         <header class="h-16 border-b border-fw-border flex items-center justify-between px-6 bg-fw-bg-alt/50 backdrop-blur-sm z-10">
-            <h1 class="text-xl font-semibold capitalize">{{ viewTitle }}</h1>
+            <h1 class="text-xl font-semibold capitalize" style="font-family: 'Caveat', cursive; font-size: 28px;">{{ viewTitle }}</h1>
             <div class="flex gap-3 items-center">
                 <!-- SHOW ARCHIVED TOGGLE (Only in Timeless) -->
                 <div v-if="currentView === 'timeless'" class="flex items-center gap-2 mr-2">
@@ -797,7 +796,7 @@ onMounted(() => {
             </div>
             <div class="p-4 bg-fw-surface/50 flex justify-end gap-2 border-t border-fw-border">
                 <button @click="showModal = false" class="px-4 py-2 text-sm text-fw-text-muted hover:text-fw-text transition-colors">Cancel</button>
-                <button @click="saveNewBlock" class="px-6 py-2 text-sm bg-fw-accent hover:bg-fw-accent-bright text-fw-bg-deep rounded-lg font-medium shadow-lg shadow-fw-accent/20 transition-all transform active:scale-95">Save</button>
+                <button @click="saveNewBlock" class="px-6 py-2 text-sm bg-fw-accent hover:bg-fw-accent-bright text-fw-bg-deep rounded-lg font-medium transition-all transform active:scale-95">Save</button>
             </div>
         </div>
     </div>
