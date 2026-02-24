@@ -9,6 +9,14 @@ const emit = defineEmits(['schedule', 'request-delete']);
 const store = useTaskStore();
 const showActions = ref(false);
 
+const columnInfo = computed(() => {
+    if (props.block.type && props.block.type !== 'task') {
+        const col = store.columns.find(c => c.typeFilter === props.block.type);
+        return col ? { title: col.title || props.block.type, color: col.color || '#5A7A8A' } : null;
+    }
+    return null;
+});
+
 const toggle = () => { store.toggleComplete(props.block.id); };
 const duplicate = () => { store.duplicateBlock(props.block.id); showActions.value = false; };
 const schedule = () => { emit('schedule', props.block); showActions.value = false; };
@@ -29,7 +37,7 @@ const toggleSubItem = (idx) => {
 </script>
 
 <template>
-    <div class="group relative bg-fw-surface/50 hover:bg-fw-surface-hover border border-fw-border/50 hover:border-fw-border-strong rounded-lg p-3 transition-all duration-200 shadow-sm"
+    <div class="group relative bg-fw-surface/50 border border-fw-border/50 rounded-lg p-3 transition-all duration-200 shadow-sm" :style="{ '--glow-color': '#F2D750' }" :class="{ 'hover-glow': true }"
             @mouseenter="showActions = true" @mouseleave="showActions = false">
         <div class="flex items-start gap-3">
             <button 
@@ -41,11 +49,11 @@ const toggleSubItem = (idx) => {
             </button>
             <div class="flex-1 min-w-0">
                 <h4 class="text-sm font-medium truncate transition-all" :class="block.isCompleted ? 'text-fw-text-faint line-through' : 'text-fw-text'">{{ block.title }}</h4>
-                    <p v-if="block.description" class="text-xs text-fw-text-faint truncate mt-0.5">{{ block.description }}</p>
+                    <p v-if="block.description" class="text-xs text-fw-text-muted mt-0.5">{{ block.description }}</p>
 
                 <div class="flex gap-2 mt-1">
                     <span v-if="block.time" class="text-[10px] bg-fw-accent/15 text-fw-accent px-1.5 py-0.5 rounded border border-fw-accent/30">{{ block.time }}</span>
-                    <span v-if="block.type !== 'task'" class="text-[10px] bg-fw-surface text-fw-text-muted px-1.5 py-0.5 rounded capitalize">{{ block.type }}</span>
+                    <span v-if="!isBacklog && columnInfo" class="text-[10px] px-1.5 py-0.5 rounded capitalize" :style="{ backgroundColor: columnInfo.color + '22', color: columnInfo.color, border: '1px solid ' + columnInfo.color + '44' }">{{ columnInfo.title }}</span>
                     <span v-if="block.isArchived" class="text-[10px] bg-amber-900/30 text-amber-500 px-1.5 py-0.5 rounded border border-amber-900/50">Archived</span>
                 </div>
                 <div v-if="isList && listItems.length > 0" class="mt-2 space-y-1">

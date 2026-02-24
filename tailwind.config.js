@@ -24,7 +24,7 @@ export default {
           'border-strong': '#5A7A8A', // prominent — cloud break
           // Text
           'text':      '#F2EEAE',  // main text
-          'text-muted':'#AEB5BF',  // secondary text
+          'text-muted':'#CBD5E1',  // secondary text — bright mist gray
           'text-faint':'#5A7282',  // faint — mist
           // Accents (yellows)
           'accent':    '#F2D750',  // primary accent (buttons, active)
